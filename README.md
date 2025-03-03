@@ -11,7 +11,7 @@ This repository contains basic OS developed as part of a second-year Operating S
   - QEMU
   - Microsoft C Compiler (if extending with C/C++ code)
 
-YASM and QEMU can be installed by [chocolatey ](https://chocolatey.org/install)
+YASM and QEMU can be installed by [chocolatey](https://chocolatey.org/install)
 # You can install packages by running:
     choco install chocolatey-compatibility.extension
     choco install yasm
