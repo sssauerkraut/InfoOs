@@ -1,5 +1,5 @@
 # InfoOs
-This repository contains basic OS developed as part of a second-year Operating Systems course at Peter the Great St. Petersburg Polytechnic University (SPbPU).
+This repository contains basic OS developed as part of a second-year Operating Systems course at Peter the Great St. Petersburg Polytechnic University (SPbPU). OS insludes only loader and kernel.
 
 # Features: *coming soon*
 
