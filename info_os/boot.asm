@@ -33,7 +33,7 @@ loading_kernel_data:
     ;in special way (check dumpbin /headers kernel.bin)
     ; Read 2 sectors from disk (sector 2) /.text
     mov ah, 0x02   ; Read function
-    mov al, 2      ; Read 2 sectors
+    mov al, 3      ; Read 2 sectors
     mov ch, 0      ; Cylinder 0
     mov cl, 2      ; Sector 2
     mov dh, 0      ; Head 0
@@ -53,7 +53,7 @@ loading_kernel_data:
     mov ah, 0x02   ; Read function
     mov al, 5      ; Read 5 sectors
     mov ch, 0      ; Cylinder 0
-    mov cl, 4      ; Sector 3
+    mov cl, 5      ; Sector 3
     mov dh, 0      ; Head 0
     int 0x13       
     jc disk_error  ; If error, print message and halt
@@ -160,7 +160,7 @@ protected_mode:
     
     ; Giving control to the loaded kernel
     call 0x00011000     ; Address equals load address of kernel 
-                        ; (look at es:bx of .data segment of kernel)
+                        ; (look at es:bx of .text segment of kernel)
     hlt
 
 ; Fill remaining space to 512 bytes with zeros
