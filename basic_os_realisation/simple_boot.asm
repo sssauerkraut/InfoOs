@@ -153,7 +153,7 @@ protected_mode:
     
     ; Giving control to the loaded kernel
     call 0x00011000     ; Address equals load address of kernel 
-                        ; (look at es:bx of .data segment of kernel)
+                        ; (look at es:bx of .text segment of kernel)
     hlt
 
 ; Fill remaining space to 512 bytes with zeros
