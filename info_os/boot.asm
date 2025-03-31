@@ -33,7 +33,7 @@ loading_kernel_data:
     ;in special way (check dumpbin /headers kernel.bin)
     ; Read 2 sectors from disk (sector 2) /.text
     mov ah, 0x02   ; Read function
-    mov al, 3      ; Read 2 sectors
+    mov al, 10      ; Read 2 sectors
     mov ch, 0      ; Cylinder 0
     mov cl, 2      ; Sector 2
     mov dh, 0      ; Head 0
@@ -45,15 +45,15 @@ loading_kernel_data:
     call print_string
     
     ; Set ES:BX to point to 0x00012000
-    mov ax, 0x1200  
+    mov ax, 0x1300  
     mov es, ax
     mov bx, 0x0000  ; Offset 0x0000 (final address: 0x00012000)
 
     ; Read 5 sector from disk (sector 3) /.data
     mov ah, 0x02   ; Read function
-    mov al, 5      ; Read 5 sectors
+    mov al, 7      ; Read 5 sectors
     mov ch, 0      ; Cylinder 0
-    mov cl, 5      ; Sector 3
+    mov cl, 12      ; Sector 3
     mov dh, 0      ; Head 0
     int 0x13       
     jc disk_error  ; If error, print message and halt
