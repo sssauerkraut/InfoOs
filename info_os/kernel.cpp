@@ -660,9 +660,30 @@ void cmd_cpuid()
     cursor_moveto(cursor_y, cursor_x);  // Обновляем позицию курсора
 }
 
-void cmd_shutdown(){
-    outw (0xB004, 0x2000); // qemu < 1.7, ex. 1.6.2
-    outw (0x604, 0x2000);  // qemu >= 1.7  
+_inline void cmd_shutdown()
+{
+    __asm {
+        // Попробовать завершить с помощью ACPI
+        push dx
+        mov ax, 0x2000
+        mov dx, 0x604 // ACPI порт
+        out dx, ax
+        pop dx
+
+        // Если не сработало, выключение через контроллер клавиатуры
+        push dx
+        mov al, 0xFE
+        mov dx, 0x64 // Порт контроллера клавиатуры
+        out dx, al
+        pop dx
+    }
+
+    // Бесконечный цикл на случай, если завершение не удалось
+    for (;;) {
+        __asm {
+            hlt // Остановить процессор до следующего прерывания
+        }
+    }
 }
 
 void cmd_loadtime() {
